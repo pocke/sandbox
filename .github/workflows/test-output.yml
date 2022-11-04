@@ -1,0 +1,27 @@
+name: test output
+
+on:
+  push:
+    branches:
+      - master
+  pull_request: {}
+
+jobs:
+  do_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup
+        id: setup
+        run: |
+          END_MARKER="$(uuidgen)"
+          echo $END_MARKER
+
+          echo "baz<<${END_MARKER}
+          foo
+          bar
+          ${END_MARKER}" >> $GITHUB_OUTPUT
+
+      - name: Get output
+        run: |
+          echo "${{ steps.setup.outputs.baz }}"
