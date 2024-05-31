@@ -4,7 +4,7 @@ on:
 
 jobs:
   test_pr_review:
-    rns-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - run: echo "$COMMENT_BODY"
         env:
