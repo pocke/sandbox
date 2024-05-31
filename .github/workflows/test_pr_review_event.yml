@@ -1,0 +1,11 @@
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  test_pr_review:
+    rns-on: ubuntu-latest
+    steps:
+      - run: echo "$COMMENT_BODY"
+        env:
+          COMMENT_BODY: ${{ github.event.review.body }}
